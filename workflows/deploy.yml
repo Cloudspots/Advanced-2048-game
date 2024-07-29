@@ -1,0 +1,23 @@
+name: GitHub Pages Deploy
+ 
+on:
+  push:
+    branches:
+      - main  # Replace with your default branch name
+ 
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2
+ 
+      - name: Install and Build 🔧
+        run: |
+          npm install
+          npm run build
+      - name: Deploy 🚀
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public  # Replace with your build directory
